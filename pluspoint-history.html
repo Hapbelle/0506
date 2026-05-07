@@ -157,6 +157,7 @@
 
             <p class="month-picker__range">(02.01~02.28)</p>
             </div>
+            <p class="point-history__current-title" id="pointHistoryTitle">쇼플포인트 적립 내역</p>
         </div>
         <!-- ✅ 적립/사용 리스트 영역 -->
         <div class="point-history__list" aria-label="포인트 내역 리스트">
@@ -625,11 +626,40 @@ if (controls && controlsSentinel) {
 
 
 // ===== Tabs =====
+// ===== Point Type + Tabs Title =====
+const pointRadios = document.querySelectorAll("[data-point-radio]");
+const historyTitle = document.getElementById("pointHistoryTitle");
+
 const tabsWrap = document.querySelector(".segmented");
 const tabs = document.querySelectorAll(".segmented__tab");
 const panels = document.querySelectorAll("[data-panel]");
 
+let currentView = "earn";
+
+function getSelectedPointName() {
+  const checkedPoint = document.querySelector("[data-point-radio]:checked");
+
+  if (!checkedPoint) return "쇼플포인트";
+
+  return checkedPoint.value === "cp" ? "쿠플포인트" : "쇼플포인트";
+}
+
+function getViewName(view) {
+  return view === "use" ? "사용" : "적립";
+}
+
+function updateHistoryTitle() {
+  if (!historyTitle) return;
+
+  const pointName = getSelectedPointName();
+  const viewName = getViewName(currentView);
+
+  historyTitle.textContent = `${pointName} ${viewName} 내역`;
+}
+
 function setView(view){
+  currentView = view;
+
   tabsWrap?.classList.toggle("is-use", view === "use");
 
   tabs.forEach(btn => {
@@ -641,11 +671,23 @@ function setView(view){
   panels.forEach(p => {
     p.hidden = p.dataset.panel !== view;
   });
+
+  updateHistoryTitle();
 }
 
-tabs.forEach(btn => btn.addEventListener("click", () => setView(btn.dataset.view)));
-setView("earn");
+tabs.forEach(btn => {
+  btn.addEventListener("click", function () {
+    setView(btn.dataset.view);
+  });
+});
 
+pointRadios.forEach(radio => {
+  radio.addEventListener("change", function () {
+    updateHistoryTitle();
+  });
+});
+
+setView("earn");
 
 // nav 없을때 최상단
 (function(){

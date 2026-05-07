@@ -411,6 +411,56 @@
 
 
 /* =========================================================
+   Point Wallet Option State
+   - 선택된 포인트 강조
+   - 선택 안 된 포인트는 옅게 처리
+========================================================= */
+.point-wallet__option-card{
+  transition: border-color 0.2s ease, background-color 0.2s ease, opacity 0.2s ease;
+}
+
+/* 선택 안 된 카드 */
+.point-wallet__input:not(:checked) + .point-wallet__option-card{
+  background: rgba(255, 255, 255, 0.72);
+  border-color: transparent;
+}
+
+/* 선택 안 된 카드 내부 텍스트 */
+.point-wallet__input:not(:checked) + .point-wallet__option-card .point-wallet__option-name,
+.point-wallet__input:not(:checked) + .point-wallet__option-card .point-wallet__option-value{
+  color: var(--gray-400, #a4a7ae);
+}
+
+/* 선택 안 된 카드 아이콘 */
+.point-wallet__input:not(:checked) + .point-wallet__option-card .point-icon{
+  opacity: 0.3;
+}
+
+/* 선택 안 된 카드 우측 체크 */
+.point-wallet__input:not(:checked) + .point-wallet__option-card .point-wallet__check{
+  border-color: var(--gray-300, #d5d7da);
+  background: transparent;
+}
+
+/* 선택된 카드 */
+.point-wallet__input:checked + .point-wallet__option-card{
+  background: #fff;
+  border-color: var(--slate-500, #64748b);
+}
+
+/* 선택된 카드 내부 텍스트 */
+.point-wallet__input:checked + .point-wallet__option-card .point-wallet__option-name,
+.point-wallet__input:checked + .point-wallet__option-card .point-wallet__option-value{
+  color: var(--gray-800, #252b37);
+}
+
+/* 선택된 카드 아이콘 */
+.point-wallet__input:checked + .point-wallet__option-card .point-icon{
+  opacity: 1;
+}
+
+
+/* =========================================================
    Point Wallet Tooltip
 ========================================================= */
 .point-wallet__tooltip-wrap{
@@ -1213,6 +1263,14 @@ html, body{
   background: #F8FAFC;
 }
 
+.point-history__current-title{
+  margin: 0;
+  color: var(--gray-800, #252b37);
+  font-size: 1rem;
+  line-height: 1.5rem;
+  letter-spacing: -0.01875rem;
+  font-weight: 600;
+}
 
 /* =========================================================
    Footer Notice (알려드려요)
