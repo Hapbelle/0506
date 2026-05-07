@@ -76,15 +76,14 @@
 }
 
 /* =========================================================
-   Point Summary (nav 아래 상단 영역)
+   Point Summary
 ========================================================= */
-.point-summary {
+.point-summary{
   background: var(--slate-100, #f1f5f9);
   padding: 1rem;
 }
 
-/* Card */
-.point-card {
+.point-card{
   background: #fff;
   border-radius: 1rem;
   padding: 1rem;
@@ -93,56 +92,278 @@
   gap: 1rem;
 }
 
-/* Head */
-.point-card__head {
+/* 상단 합계 */
+.point-card__top{
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
 }
 
-.point-card__title-row {
-  display: flex;
+.point-card__label-row{
+  display: inline-flex;
   align-items: center;
-
+  gap: 0;
 }
 
-.point-card__title {
+.point-card__label{
+  margin: 0;
   color: var(--gray-900, #181d27);
-  font-size: 1.125rem;
+  font-size: 0.875rem;
   line-height: 1.3125rem;
   font-weight: 500;
 }
 
-/* Body */
-.point-card__body {
-  display: flex;
+.point-card__help{
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  display: inline-flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  flex: 0 0 auto;
 }
 
-.point-card__amount {
+.point-card__help-icon{
+  width: 0.875rem;
+  height: 0.875rem;
+  display: block;
+}
+
+.point-card__total{
   display: flex;
   align-items: center;
   gap: 0.25rem;
 }
 
+.point-card__coins{
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+}
 
+.point-card__coins .point-icon + .point-icon{
+  margin-left: -0.5rem;
+}
 
-.point-card__value {
+.point-card__value{
+  margin: 0;
   color: var(--gray-800, #252b37);
   font-size: 1.75rem;
   line-height: 2.625rem;
   letter-spacing: -0.01875rem;
   font-weight: 700;
+  white-space: nowrap;
 }
 
+/* 하단 포인트 목록 */
+.point-card__list{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.point-card__row{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.point-card__info{
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  min-width: 0;
+}
+
+.point-card__name{
+  margin: 0;
+  color: var(--gray-900, #181d27);
+  font-size: 0.75rem;
+  line-height: 1.3125rem;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.point-card__point{
+  margin: 0;
+  color: var(--gray-800, #252b37);
+  font-size: 1.125rem;
+  line-height: 1.6875rem;
+  letter-spacing: -0.01875rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* 전환하기 버튼 */
+.point-card__convert{
+  background: var(--c-point, #036635);
+  border-radius: 0.5rem;
+  padding: 0.375rem 0.625rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  flex: 0 0 auto;
+}
+
+.point-card__convert-icon{
+  width: 0.875rem;
+  height: 0.875rem;
+  display: block;
+  flex: 0 0 auto;
+}
+
+.point-card__convert-text{
+  color: #fff;
+  font-size: 0.75rem;
+  line-height: 1.125rem;
+  letter-spacing: -0.01875rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* SP / CP 아이콘 공통 */
+.point-icon{
+  border-radius: 3.125rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  letter-spacing: -0.01875rem;
+  box-sizing: border-box;
+}
+
+.point-icon--summary{
+  width: 2.0625rem;
+  height: 1.875rem;
+  border: 0.0625rem solid var(--slate-100, #f1f5f9);
+  color: #fff;
+  font-size: 0.875rem;
+  line-height: 1.3125rem;
+  font-weight: 600;
+}
+
+.point-icon--small{
+  width: 1.75rem;
+  height: 1.75rem;
+  background: var(--slate-100, #f1f5f9);
+  font-size: 0.75rem;
+  line-height: 1;
+  font-weight: 500;
+}
+
+.point-icon--summary.point-icon--sp{
+  background: #036635;
+}
+
+.point-icon--summary.point-icon--cp{
+  background: #e63625;
+}
+
+.point-icon--small.point-icon--sp{
+  color: #036635;
+}
+
+.point-icon--small.point-icon--cp{
+  color: #e63625;
+}
+
+
+/* =========================================================
+   Point Card Tooltip
+========================================================= */
+.point-card__tooltip-wrap{
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+}
+
+.point-card-tooltip{
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 0.125rem);
+  z-index: 80;
+  width: 15.375rem;
+  transform: translateX(-50%);
+  filter: drop-shadow(0 0.9375rem 2.1875rem rgba(103, 110, 118, 0.08)) drop-shadow(0 0.3125rem 0.9375rem rgba(0, 0, 0, 0.12));
+}
+
+.point-card-tooltip__arrow{
+  display: block;
+  width: 0;
+  height: 0;
+  margin: 0 auto;
+  border-left: 0.4375rem solid transparent;
+  border-right: 0.4375rem solid transparent;
+  border-bottom: 0.5rem solid #19162c;
+}
+
+.point-card-tooltip__panel{
+  margin-top: -0.0625rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  background: #19162c;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  box-sizing: border-box;
+}
+
+.point-card-tooltip__head{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.point-card-tooltip__title{
+  margin: 0;
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 600;
+}
+
+.point-card-tooltip__close{
+  width: 1rem;
+  height: 1rem;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.point-card-tooltip__close-icon{
+  width: 0.625rem;
+  height: 0.625rem;
+  display: block;
+}
+
+.point-card-tooltip__list{
+  margin: 0;
+  padding-left: 1rem;
+  color: #a4a7ae;
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  word-break: keep-all;
+}
+
+.point-card-tooltip__list li{
+  margin: 0;
+}
 
 
 /* =========================================================
    플러스콘 카테고리
 ========================================================= */
 
-.pluscon-category {
+/* .pluscon-category {
   background: #f1f5f9;
   padding: 1rem 1rem 1rem;
   overflow-x: auto;
@@ -184,7 +405,7 @@
   background: #252b37;
   color: #fff;
   font-weight: 600;
-}
+} */
 
 
 
@@ -192,7 +413,7 @@
    상품 보는 방식 선택
 ========================================================= */
 
-.shop-section__head {
+/* .shop-section__head {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -237,9 +458,121 @@
 
 .view-toggle__btn.is-active {
   background: #334155;
+} */
+
+/* =========================================================
+   상품 상단 타이틀 / 카테고리 / 보기 전환
+========================================================= */
+.shop-section{
+  background: var(--slate-100, #f1f5f9);
+  padding: 0 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
+.shop-section__top{
+  margin: 0 -1rem;
+  background: var(--slate-100, #f1f5f9);
+}
 
+.shop-section__title-wrap{
+  padding: 1rem 1rem 0;
+}
+
+.shop-section__title{
+  margin: 0;
+  color: var(--gray-900, #181d27);
+  font-size: 1.125rem;
+  line-height: 1.375rem;
+  font-weight: 600;
+  word-break: keep-all;
+}
+
+.shop-section__toolbar{
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+/* 카테고리 */
+.pluscon-category{
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.pluscon-category::-webkit-scrollbar{
+  display: none;
+}
+
+.pluscon-category__scroll{
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: max-content;
+  max-width: 100%;
+}
+
+.pluscon-category__chip{
+  flex: 0 0 auto;
+  border: 0;
+  border-radius: 1rem;
+  background: #fff;
+  padding: 0.375rem 1rem;
+  color: var(--slate-700, #334155);
+  font-size: 0.875rem;
+  line-height: 1.3125rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.pluscon-category__chip.is-active{
+  background: var(--gray-800, #252b37);
+  color: #fff;
+  font-weight: 600;
+}
+
+/* 보기 전환 */
+.view-toggle{
+  background: #fff;
+  border-radius: 0.5rem;
+  padding: 0.25rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex: 0 0 auto;
+}
+
+.view-toggle__btn{
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 0;
+  border-radius: 0.5rem;
+  background: transparent;
+  padding: 0.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.view-toggle__btn.is-active{
+  background: var(--slate-700, #334155);
+}
+
+.view-toggle__icon{
+  width: 1rem;
+  height: 1rem;
+  display: block;
+}
 
 
 /* =========================================================
@@ -274,12 +607,7 @@
   background: transparent;
 } */
 
-.view-toggle__icon {
-  display: block;
-  width: 18px;
-  height: 18px;
 
-}
 
 .product-list {
   list-style: none;
@@ -548,120 +876,115 @@
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 /* =========================================================
-   Shop List (2열 그리드)
+   쇼플포인트 전용 상품 카드
+   - 기본 product-card 구조는 그대로 사용
+   - 테두리, 뱃지, PNG 이미지만 추가
 ========================================================= */
-.shop-section {
-  background: var(--slate-100, #f1f5f9);
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+.product-card--point-only{
+  border: 0.125rem solid #036635;
+  box-sizing: border-box;
 }
 
-.shop-section__title {
-  color: var(--gray-900, #181d27);
-  font-size: 1.125rem;
-  line-height: 1.3125rem;
-  font-weight: 600;
+/* 테두리가 들어가도 기존 카드 라운드 유지 */
+.product-list--grid .product-card--point-only{
+  border-radius: 1rem;
+  overflow: hidden;
 }
 
-/* ✅ 핵심: 2열 자동 정렬 */
-.shop-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.625rem;
+/* 썸네일은 기존 product-card__thumb 스타일을 그대로 타고, 뱃지 기준점만 추가 */
+.product-card__thumb--point{
+  position: relative;
 }
 
-/* li는 레이아웃만 담당 */
-.shop-grid__item {
-  min-width: 0;
-}
-
-/* Card */
-.shop-card {
-  background: #fff;
-  border-radius: 0.5rem;
-  padding: 1rem;
-  min-height: 8.25rem;
-
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: center;
-  gap: 0.25rem;
-}
-
-/* meta */
-.shop-card__meta {
+/* PNG 가운데 정렬용 */
+.product-card__point-visual{
   width: 100%;
+  height: 100%;
+  padding-top: 0.25rem;
   display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
 }
 
-.shop-card__name {
-  color: var(--gray-700, #414651);
+/* PNG 이미지 */
+.product-card__point-img{
+  width: 120px;
+  height: auto;
+  display: block;
+  flex: 0 0 auto;
+  object-fit: contain;
+  transform: translateY(10px);
+}
+
+/* 쇼플포인트 전용 라벨 */
+.product-card__badge{
+  position: absolute;
+  left: 0;
+  top: 8px;
+  z-index: 2;
+  margin: 0;
+  padding: 0.375rem 1rem;
+  border-radius: 0 3.125rem 3.125rem 0;
+  background: #036635;
+  color: #fff;
   font-size: 0.75rem;
   line-height: 1.125rem;
-  font-weight: 400;
-
-  overflow: hidden;
-  text-overflow: ellipsis;
+  letter-spacing: -0.02em;
+  font-weight: 600;
   white-space: nowrap;
 }
 
-.shop-card__rate {
-  color: var(--slate-800, #1e293b);
-  font-size: 1.5rem;
-  line-height: 1.3125rem;
-  font-weight: 600;
+
+/* 리스트형일 때 쇼플포인트 전용 카드 기준점 */
+.product-list--list .product-card--point-only{
+  position: relative;
+  border: 0.125rem solid #036635;
+  overflow: visible;
 }
 
-/* logo box */
-.shop-card__logo {
-  background: var(--slate-50, #f8fafc);
+/* 리스트형 썸네일 박스 안에서 PNG 가운데 정렬 */
+.product-list--list .product-card--point-only .product-card__thumb--point{
+  position: static;
+  width: 5rem;
+  height: 5rem;
+  padding: 0.625rem;
   border-radius: 0.5rem;
-  border: 0.0625rem solid var(--slate-100, #f1f5f9);
-  width: 3.125rem;
-  height: 3.125rem;
-  padding: 0 0.25rem;
-
+  background: #faf8f8;
+  overflow: visible;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* logo image */
-.shop-card__logo-img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  display: block;
+.product-list--list .product-card--point-only .product-card__point-visual{
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* 옵션: 둥근 로고(알리/트립 등) */
-.shop-card__logo-img.is-round {
-  border-radius: 0.625rem;
+.product-list--list .product-card--point-only .product-card__point-img{
+  width: 4.5rem;
+  height: auto;
+  transform: translateY(6px);
 }
 
-/* 옵션: 세로로 긴 로고(쿠팡 같은) */
-.shop-card__logo-img.is-tall {
-  height: 2.6225rem;
-  /* 피그마 값 유지 느낌 */
+.product-list--list .product-card--point-only .product-card__badge{
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  z-index: 3;
+  padding: 0.375rem 0.75rem;
+  border-radius: 0 3.125rem 3.125rem 0;
+  font-size: 0.75rem;
+  line-height: 1.125rem;
+  font-weight: 600;
 }
+
 
 
 

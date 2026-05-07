@@ -1,0 +1,946 @@
+/* =========================================================
+   Typography & Layout Spacing
+========================================================= */
+
+/* Use flex on .wrap down to content for sticky footer */
+.wrap--flex {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content--flex {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 5.5rem; /* 플로팅 버튼(3.5rem) + 상하 패딩(1rem×2) 여백 — 풋터가 버튼 위로 스크롤됨 */
+  overflow-y: auto;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* 버튼 없는 화면(교환 완료 등)에서는 여백 제거 */
+.content--flex.content--no-bottom-action {
+  padding-bottom: 0;
+}
+
+.content--flex::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari, Opera*/
+}
+
+/* =========================================================
+   1. Title Section
+========================================================= */
+.detail-title {
+  text-align: center;
+  padding: 1.5rem 1rem 1rem;
+}
+
+.detail-title__brand {
+  color: #414651;
+  font-family: "Pretendard", sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.detail-title__name {
+  color: #181d27;
+  font-family: "Pretendard", sans-serif;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.detail-title__badge{
+  width: fit-content;
+  margin: 1rem auto 0;
+  padding: 0.125rem 0.625rem;
+  border-radius: 3.125rem;
+  background: #036635;
+  color: #fff;
+  font-size: 0.75rem;
+  line-height: 1.125rem;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+/* 교환 입력 화면: 상품 정보 좌측 정렬 */
+.detail-title--left{
+  padding: 1rem;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.625rem;
+}
+
+.detail-title--left .detail-title__brand{
+  margin: 0;
+  color: var(--gray-900, #181d27);
+  font-size: 0.875rem;
+  line-height: 1.3125rem;
+  font-weight: 500;
+}
+
+.detail-title--left .detail-title__name{
+  margin: 0;
+  color: var(--gray-800, #252b37);
+  font-size: 1.5rem;
+  line-height: 2.625rem;
+  letter-spacing: -0.01875rem;
+  font-weight: 800;
+}
+
+.detail-title--left .detail-title__badge{
+  margin: 0;
+}
+
+
+/* =========================================================
+   Convert Amount Display
+========================================================= */
+.convert-amount{
+  padding: 3rem 1rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+
+.convert-amount__placeholder{
+  margin: 0;
+  color: var(--gray-500, #717680);
+  font-size: 1.5rem;
+  line-height: 1.3125rem;
+  letter-spacing: -0.003em;
+  font-weight: 600;
+}
+
+.convert-amount__filled{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.convert-amount__filled[hidden]{
+  display: none;
+}
+
+.convert-amount__row{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+.convert-amount__value{
+  margin: 0;
+  color: var(--gray-800, #252b37);
+  font-size: 1.5rem;
+  line-height: 1.3125rem;
+  letter-spacing: -0.003em;
+  font-weight: 600;
+}
+
+.convert-amount__ko{
+  margin: 0;
+  color: var(--slate-600, #475569);
+  font-size: 0.875rem;
+  line-height: 1.375rem;
+  letter-spacing: -0.01875rem;
+  font-weight: 400;
+}
+
+.convert-amount__balance{
+  margin: 0;
+  color: var(--slate-500, #64748b);
+  font-size: 0.875rem;
+  line-height: 1.375rem;
+  letter-spacing: -0.01875rem;
+  font-weight: 400;
+}
+
+.convert-amount__error{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.25rem;
+}
+
+.convert-amount__error[hidden]{
+  display: none;
+}
+
+.convert-amount__error-icon{
+  width: 1rem;
+  height: 1rem;
+  display: block;
+  flex: 0 0 auto;
+}
+
+.convert-amount__error-text{
+  margin: 0;
+  color: #f44336;
+  font-size: 0.875rem;
+  line-height: 1.375rem;
+  letter-spacing: -0.01875rem;
+  font-weight: 400;
+}
+
+/* =========================================================
+   Convert Confirm Bottom Sheet
+========================================================= */
+.convert-sheet{
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.convert-sheet.is-active{
+  visibility: visible;
+  opacity: 1;
+}
+
+.convert-sheet__dim{
+  position: absolute;
+  inset: 0;
+  background: rgba(51, 51, 51, 0.3);
+}
+
+.convert-sheet__panel{
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 28.75rem;
+  padding: 2rem 1rem calc(2rem + env(safe-area-inset-bottom));
+  border-radius: 1rem 1rem 0 0;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  box-sizing: border-box;
+  transform: translateY(100%);
+  transition: transform 0.25s ease;
+}
+
+.convert-sheet.is-active .convert-sheet__panel{
+  transform: translateY(0);
+}
+
+.convert-sheet__content{
+  padding-bottom: 2rem;
+}
+
+.convert-sheet__head{
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.convert-sheet__title-wrap{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.convert-sheet__title-group{
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.convert-sheet__label,
+.convert-sheet__title{
+  margin: 0;
+  color: var(--gray-800, #252b37);
+  font-size: 1.125rem;
+  line-height: 1.3125rem;
+  letter-spacing: -0.01875rem;
+  font-weight: 600;
+}
+
+.convert-sheet__close{
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.convert-sheet__close-icon{
+  width: 1.125rem;
+  height: 1.125rem;
+  display: block;
+}
+
+.convert-sheet__desc{
+  margin: 0;
+  color: var(--gray-600, #535862);
+  font-size: 0.875rem;
+  line-height: 1.3125rem;
+  letter-spacing: -0.01875rem;
+  font-weight: 400;
+}
+
+.convert-sheet__actions{
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.convert-sheet__btn{
+  height: 3.375rem;
+  border-radius: 0.75rem;
+  color: #fcf7e4;
+  font-size: 1rem;
+  line-height: 1.375rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.convert-sheet__btn--cancel{
+  width: 7.5rem;
+  flex: 0 0 7.5rem;
+  background: var(--gray-300, #d5d7da);
+}
+
+.convert-sheet__btn--confirm{
+  flex: 1;
+  background: var(--c-point, #036635);
+}
+
+/* 바텀시트 열릴 때 배경 스크롤 잠금 */
+body.is-sheet-open{
+  overflow: hidden;
+}
+
+/* =========================================================
+   Convert Layout
+========================================================= */
+.content--flex{
+  padding-bottom: 0;
+}
+
+.convert-state{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+/* =========================================================
+   Convert Keypad
+========================================================= */
+.convert-keypad{
+  margin-top: auto;
+  padding: 1rem 0.75rem;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  box-sizing: border-box;
+}
+
+.convert-keypad__quick{
+  margin: 0 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.375rem;
+}
+
+.convert-keypad__quick-btn{
+  min-width: 0;
+  height: 2.125rem;
+  padding: 0.125rem 0.625rem;
+  border-radius: 0.5rem;
+  background: var(--slate-100, #f1f5f9);
+  color: var(--gray-600, #535862);
+  font-size: 0.875rem;
+  line-height: 1.875rem;
+  letter-spacing: -0.01875rem;
+  font-weight: 600;
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+
+.convert-keypad__quick-btn:last-child{
+  min-width: 4.1875rem;
+}
+
+.convert-keypad__number{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 1.5rem;
+  column-gap: 1rem;
+  padding: 0 0.25rem;
+}
+
+.convert-keypad__num{
+  height: 2.5rem;
+  color: #000;
+  text-align: center;
+  font-size: 1.75rem;
+  line-height: 2.5rem;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.convert-keypad__delete{
+  font-size: 1.25rem;
+}
+
+.convert-action{
+  padding-top: 0.5rem;
+}
+
+.convert-action__btn{
+  width: 100%;
+  height: 3.5rem;
+  border-radius: 0.75rem;
+  background: var(--c-point, #036635);
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1.375rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.convert-action__btn:disabled{
+  background: #86b89b;
+  color: #fcf7e4;
+  cursor: default;
+}
+
+
+
+
+/* =========================================================
+   Convert Hero
+========================================================= */
+.convert-hero{
+  padding: 1rem;
+  background: var(--slate-100, transparent);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.625rem;
+  box-sizing: border-box;
+}
+
+.convert-hero__title{
+  margin: 0;
+  color: var(--gray-900, #181d27);
+  font-size: 1.125rem;
+  line-height: 1.6875rem;
+  font-weight: 700;
+  letter-spacing: -0.003em;
+}
+
+.convert-hero__title span{
+  color: var(--c-point, #036635);
+}
+
+.convert-hero__point{
+  margin: 0;
+  color: var(--gray-600, #535862);
+  font-size: 0.875rem;
+  line-height: 1.3125rem;
+  letter-spacing: -0.003em;
+  font-weight: 500;
+}
+
+
+
+
+/* =========================================================
+   7. Missing Nav & Footer Layouts
+========================================================= */
+.nav {
+  background: #fff;
+  border-bottom: 0.0625rem solid var(--gray-200, transparent);
+  padding: 1rem;
+  height: 3.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.nav__list {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav__left,
+.nav__center,
+.nav__right {
+  display: flex;
+  align-items: center;
+}
+
+.nav__left,
+.nav__right {
+  width: 1.5rem;
+  flex: 0 0 1.5rem;
+}
+
+.nav__back {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.nav__icon {
+  width: 1.125rem;
+  height: 1.125rem;
+  display: block;
+}
+
+.nav__center {
+  flex: 1 1 auto;
+  justify-content: center;
+  min-width: 0;
+}
+
+.nav__title {
+  color: var(--gray-900, #181d27);
+  text-align: center;
+  font-family: var(--pretendard-h1-b-font-family, "Pretendard-Bold", sans-serif);
+  font-size: var(--pretendard-h1-b-font-size, 1rem);
+  line-height: var(--pretendard-h1-b-line-height, 1.5rem);
+  letter-spacing: var(--pretendard-h1-b-letter-spacing, -0.01875rem);
+  font-weight: var(--pretendard-h1-b-font-weight, 700);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nav__spacer {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: block;
+}
+
+.footer-sign {
+  padding: 1rem 1.25rem;
+  background: #f1f5f9;
+}
+
+.footer-sign__row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.footer-sign__brand {
+  margin: 0;
+  flex: 1;
+  font-size: 0.75rem;
+  line-height: 1.125rem;
+  font-weight: 700;
+  color: #333333;
+}
+
+.footer-sign__copy {
+  margin: 0;
+  font-size: 0.75rem;
+  line-height: 1.125rem;
+  font-weight: 400;
+  color: #999999;
+}
+
+.footer-sign__links {
+  margin-top: 0.5rem;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.footer-sign__links a {
+  font-size: 0.75rem;
+  line-height: 1.125rem;
+  font-weight: 700;
+  color: #333333;
+  text-decoration: none;
+}
+
+.footer-sign.footer-sign--v2 .footer-sign__links {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-sign.footer-sign--v2 .footer-sign__policies {
+  display: flex;
+  gap: 0.4375rem;
+  align-items: center;
+}
+
+.footer-sign.footer-sign--v2 .footer-sign__policy {
+  font-size: 0.75rem;
+  line-height: 1.125rem;
+  font-weight: 400;
+  color: #666666;
+  text-decoration: none;
+}
+
+.footer-sign.footer-sign--v2 .footer-sign__policy--strong {
+  font-weight: 700;
+}
+
+.footer-sign.footer-sign--v2 .footer-sign__links {
+  flex-wrap: wrap;
+  row-gap: 0.5rem;
+}
+
+.footer-sign--push{
+  margin-top: auto;
+}
+
+
+
+/* =========================================================
+   Convert Complete State
+========================================================= */
+.convert-complete-state{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.convert-complete-state.is-hidden{
+  display: none;
+}
+
+.convert-complete{
+  flex: 1;
+  padding: 8rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.convert-complete__icon{
+  width: 4rem;
+  height: 4rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.convert-complete__icon-img{
+  width: 4rem;
+  height: 4rem;
+  display: block;
+}
+
+.convert-complete__title{
+  margin: 0;
+  color: var(--gray-900, #181d27);
+  font-size: 1.125rem;
+  line-height: 1.6875rem;
+  letter-spacing: -0.003em;
+  font-weight: 700;
+}
+
+.convert-complete__date{
+  margin: 0.625rem 0 0;
+  color: var(--gray-600, #535862);
+  font-size: 0.875rem;
+  line-height: 1.3125rem;
+  letter-spacing: -0.003em;
+  font-weight: 500;
+}
+
+/* =========================================================
+   Convert Complete State
+========================================================= */
+.convert-state.is-hidden,
+.convert-complete-state.is-hidden{
+  display: none;
+}
+
+.convert-complete-state{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: #fff;
+}
+
+.convert-complete{
+  flex: 1;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-1.5rem);
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.convert-complete__icon{
+  width: 4rem;
+  height: 4rem;
+  margin-bottom: 1rem;
+  border-radius: 50%;
+  background: var(--slate-200, #e2e8f0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.convert-complete__icon-img{
+  width: 4rem;
+  height: 4rem;
+  display: block;
+}
+
+.convert-complete__title{
+  margin: 0;
+  color: var(--gray-900, #181d27);
+  font-size: 1.125rem;
+  line-height: 1.6875rem;
+  letter-spacing: -0.003em;
+  font-weight: 700;
+}
+
+.convert-complete__date{
+  margin: 0.625rem 0 0;
+  color: var(--gray-600, #535862);
+  font-size: 0.875rem;
+  line-height: 1.3125rem;
+  letter-spacing: -0.003em;
+  font-weight: 500;
+}
+
+.convert-complete__actions{
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-sizing: border-box;
+}
+
+.convert-complete__btn{
+  height: 3.5rem;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  line-height: 1.375rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.convert-complete__btn--sub{
+  flex: 1;
+  border: 0.0625rem solid var(--slate-400, #94a3b8);
+  background: #fff;
+  color: var(--gray-800, #252b37);
+}
+
+.convert-complete__btn--primary{
+  flex: 1;
+  background: var(--c-point, #036635);
+  color: #fff;
+}
+
+/* =========================================================
+   Convert Fail Modal
+========================================================= */
+.convert-fail-modal{
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  box-sizing: border-box;
+}
+
+.convert-fail-modal.is-active{
+  visibility: visible;
+  opacity: 1;
+}
+
+.convert-fail-modal__dim{
+  position: absolute;
+  inset: 0;
+  background: rgba(51, 51, 51, 0.3);
+}
+
+.convert-fail-modal__panel{
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 20.5rem;
+  padding: 2rem 1rem;
+  border-radius: 1rem;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  box-sizing: border-box;
+}
+
+.convert-fail-modal__icon{
+  width: 3.75rem;
+  height: 3.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.convert-fail-modal__icon-img{
+  width: 3.75rem;
+  height: 3.75rem;
+  display: block;
+}
+
+.convert-fail-modal__text{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.625rem;
+  text-align: center;
+}
+
+.convert-fail-modal__title{
+  margin: 0;
+  color: var(--gray-800, #252b37);
+  font-size: 1.125rem;
+  line-height: 1.3125rem;
+  letter-spacing: -0.01875rem;
+  font-weight: 600;
+}
+
+.convert-fail-modal__desc{
+  margin: 0;
+  color: var(--gray-800, #252b37);
+  font-size: 0.875rem;
+  line-height: 1.375rem;
+  letter-spacing: -0.01875rem;
+  font-weight: 400;
+  text-align: center;
+}
+
+.convert-fail-modal__btn{
+  width: 100%;
+  height: 3.375rem;
+  border-radius: 0.75rem;
+  background: var(--c-point, #036635);
+  color: #fcf7e4;
+  font-size: 1rem;
+  line-height: 1.375rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =========================================================
+   Desktop preview only
+========================================================= */
+@media (min-width: 580px) {
+  #index {
+    box-shadow: 0.1875rem 0.25rem 0.6875rem rgba(0, 0, 0, 0.125);
+  }
+
+  .wrap {
+    width: 28.75rem;
+    /* 460px */
+    margin: 0 auto;
+    height: 100svh;
+    overflow: hidden;
+  }
+
+  .footer-sign {
+    width: 28.75rem;
+    margin: 0 auto;
+  }
+}
+
+
+
+
+/* 다크모드 테스트 토글 */
+.mode-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+}
+
+.mode-toggle input {
+  display: none;
+}
+
+.mode-toggle span {
+  display: block;
+  width: 56px;
+  height: 32px;
+  border-radius: 999px;
+  background: #ddd;
+  position: relative;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.mode-toggle span::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #fff;
+  transition: 0.25s;
+}
+
+.mode-toggle input:checked + span {
+  background: #0B2BD6;
+}
+
+.mode-toggle input:checked + span::after {
+  transform: translateX(24px);
+}
+/* 다크모드 테스트 토글 */
