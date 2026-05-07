@@ -46,59 +46,159 @@
         </nav>
 
         <!-- 상단 포인트 영역 -->
-        <section class="point-summary" aria-label="포인트 요약">
-          <div class="point-card">
-            <div class="point-card__head">
-              <div class="point-card__title-row">
-                <p class="point-card__title">보유 중인 포인트</p>
-              </div>
-            </div>
+<section class="point-summary" aria-label="보유 포인트 요약">
+  <div class="point-card">
+    <div class="point-card__top">
+<div class="point-card__label-row">
+  <p class="point-card__label">보유중인 포인트 합계</p>
 
-            <div class="point-card__body">
-              <div class="point-card__amount">
-                <!-- 포인트 변경 최대 99,999,999 -->
-                <p class="point-card__value">99,999,999</p>
-              </div>
-            </div>
-          </div>
-        </section>
+  <div class="point-card__tooltip-wrap">
+    <button type="button" class="point-card__help" aria-label="보유중인 포인트 합계 안내" aria-expanded="false" aria-controls="pointCardTooltip" data-point-card-tooltip-trigger>
+      <img class="point-card__help-icon" src="imgs/circle-help.svg" alt="" />
+    </button>
+
+    <div class="point-card-tooltip" id="pointCardTooltip" role="dialog" aria-label="보유중인 포인트 합계 안내" hidden>
+      <span class="point-card-tooltip__arrow" aria-hidden="true"></span>
+
+      <div class="point-card-tooltip__panel">
+        <div class="point-card-tooltip__head">
+          <p class="point-card-tooltip__title">보유 중인 포인트 합계 안내</p>
+          <button type="button" class="point-card-tooltip__close" aria-label="툴팁 닫기" data-point-card-tooltip-close>
+            <img class="point-card-tooltip__close-icon" src="imgs/xicon-w.svg" alt="" />
+          </button>
+        </div>
+
+        <ul class="point-card-tooltip__list">
+          <li>· 적립 받은 쇼플포인트와 쿠플포인트의 총합입니다.</li>
+          <li>· 쇼플포인트란 쿠팡을 제외한 모든 쇼핑몰에서 쇼핑 후 받으신 리워드입니다.</li>
+          <li>· 쿠플포인트란 쿠팡에서 쇼핑 후 받으신 리워드입니다.</li>
+          <li>· 상세한 내용은 적립내역에서 확인할 수 있습니다.</li>
+          <li>· 쇼핑몰 정책 변경 혹은 기타 사유로 실제 적립 내역이 다를 수 있습니다.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+      <div class="point-card__total">
+        <!-- <div class="point-card__coins" aria-hidden="true">
+          <span class="point-icon point-icon--summary point-icon--sp">SP</span>
+          <span class="point-icon point-icon--summary point-icon--cp">CP</span>
+        </div> -->
+
+        <p class="point-card__value">48,276</p>
+      </div>
+    </div>
+
+    <div class="point-card__list">
+      <div class="point-card__row">
+        <div class="point-card__info">
+          <span class="point-icon point-icon--small point-icon--sp">SP</span>
+          <p class="point-card__name">쇼플 포인트</p>
+          <p class="point-card__point">28,276</p>
+        </div>
+
+<a href="pluscon-convert.html" class="point-card__convert" aria-label="쇼플 포인트 전환하기">
+  <img class="point-card__convert-icon" src="imgs/refresh.svg" alt="" />
+  <span class="point-card__convert-text">전환하기</span>
+</a>
+      </div>
+
+      <div class="point-card__row">
+        <div class="point-card__info">
+          <span class="point-icon point-icon--small point-icon--cp">CP</span>
+          <p class="point-card__name">쿠플 포인트</p>
+          <p class="point-card__point">20,000</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
       </header>
 
       <main class="content" id="content">
-<!-- 카테고리 기능 적용시 아래 버튼 추가 해서 사용-->
-        <section class="pluscon-category" aria-label="카테고리">
-          <div class="pluscon-category__scroll">
-            <button type="button" class="pluscon-category__chip is-active">전체</button>
-            <button type="button" class="pluscon-category__chip">커피/음료</button>
-            <button type="button" class="pluscon-category__chip">치킨/피자</button>
-            <button type="button" class="pluscon-category__chip">패스트푸드</button>
-            <button type="button" class="pluscon-category__chip">기타</button>
-            <button type="button" class="pluscon-category__chip">기타</button>
-            <button type="button" class="pluscon-category__chip">기타</button>
-          </div>
-        </section>
+
 
 
 
         <!-- 상품 리스트 -->
-        <section class="shop-section" aria-label="상품 리스트">
-          <div class="shop-section__head">
-            <p class="shop-section__title">마음에 드는 상품으로 교환하세요.</p>
+<section class="shop-section" aria-label="상품 리스트">
+  <div class="shop-section__top">
+    <div class="shop-section__title-wrap">
+      <p class="shop-section__title">마음에 드는 상품으로 교환하세요.</p>
+    </div>
 
-            <div class="view-toggle" role="group" aria-label="상품 보기 방식 선택">
-              <button type="button" class="view-toggle__btn is-active" aria-label="그리드 보기" data-view="grid">
-                <img class="view-toggle__icon" src="imgs/grid-view-active.svg" alt="" data-default="imgs/grid-view.svg"
-                  data-active="imgs/grid-view-active.svg" />
-              </button>
+    <div class="shop-section__toolbar">
+      <div class="pluscon-category" aria-label="카테고리">
+        <div class="pluscon-category__scroll">
+          <button type="button" class="pluscon-category__chip is-active">전체</button>
+          <!-- <button type="button" class="pluscon-category__chip">커피/음료</button>
+          <button type="button" class="pluscon-category__chip">치킨/피자</button>
+          <button type="button" class="pluscon-category__chip">패스트푸드</button>
+          <button type="button" class="pluscon-category__chip">기타</button> -->
+        </div>
+      </div>
 
-              <button type="button" class="view-toggle__btn" aria-label="리스트 보기" data-view="list">
-                <img class="view-toggle__icon" src="imgs/grid-list.svg" alt="" data-default="imgs/grid-list.svg"
-                  data-active="imgs/grid-list-active.svg" />
-              </button>
-            </div>
-          </div>
+      <div class="view-toggle" role="group" aria-label="상품 보기 방식 선택">
+        <button type="button" class="view-toggle__btn is-active" aria-label="그리드 보기" data-view="grid">
+          <img class="view-toggle__icon" src="imgs/grid-view-active.svg" alt="" data-default="imgs/grid-view.svg" data-active="imgs/grid-view-active.svg" />
+        </button>
 
-          <ul class="product-list product-list--grid" aria-label="플러스콘 상품 목록">
+        <button type="button" class="view-toggle__btn" aria-label="리스트 보기" data-view="list">
+          <img class="view-toggle__icon" src="imgs/grid-list.svg" alt="" data-default="imgs/grid-list.svg" data-active="imgs/grid-list-active.svg" />
+        </button>
+      </div>
+    </div>
+  </div>
+
+<ul class="product-list product-list--grid" aria-label="플러스콘 상품 목록">
+
+<li class="product-list__item">
+  <a href="pluscon-detail.html" class="product-card product-card--point-only" aria-label="네이버페이 포인트 500원 상세 보기">
+    <div class="product-card__thumb product-card__thumb--point">
+      <p class="product-card__badge">쇼플포인트 전용</p>
+
+      <div class="product-card__point-visual">
+        <img class="product-card__point-img" src="imgs/product/npay500.png" alt="네이버페이 포인트 500원 상품권" />
+      </div>
+    </div>
+    <div class="product-card__content">
+      <p class="product-card__brand">네이버페이</p>
+      <div class="product-card__info">
+        <p class="product-card__name">네이버페이 포인트 500원</p>
+        <div class="product-card__price">
+          <span class="product-card__point">500</span>
+          <span class="product-card__unit">P</span>
+        </div>
+      </div>
+    </div>
+    <img class="product-card__arrow" src="imgs/pluscon-right.svg" alt="" aria-hidden="true" />
+  </a>
+</li>
+<li class="product-list__item">
+  <a href="pluscon-detail.html" class="product-card product-card--point-only" aria-label="네이버페이 포인트 500원 상세 보기">
+    <div class="product-card__thumb product-card__thumb--point">
+      <p class="product-card__badge">쇼플포인트 전용</p>
+
+      <div class="product-card__point-visual">
+        <img class="product-card__point-img" src="imgs/product/npay1000.png" alt="네이버페이 포인트 500원 상품권" />
+      </div>
+    </div>
+    <div class="product-card__content">
+      <p class="product-card__brand">네이버페이</p>
+      <div class="product-card__info">
+        <p class="product-card__name">네이버페이 포인트 1,000원</p>
+        <div class="product-card__price">
+          <span class="product-card__point">1,000</span>
+          <span class="product-card__unit">P</span>
+        </div>
+      </div>
+    </div>
+    <img class="product-card__arrow" src="imgs/pluscon-right.svg" alt="" aria-hidden="true" />
+  </a>
+</li>
+
+
             <li class="product-list__item">
               <a href="pluscon-detail.html" class="product-card" aria-label="버거킹 콰트로치즈와퍼세트 상세 보기">
                 <div class="product-card__thumb">
@@ -365,6 +465,50 @@
         productList.classList.add(`product-list--${view}`);
       });
     });
+
+
+/* 보유 포인트 합계 툴팁 */
+const pointCardTooltipTrigger = document.querySelector("[data-point-card-tooltip-trigger]");
+const pointCardTooltip = document.getElementById("pointCardTooltip");
+
+function closePointCardTooltip() {
+  if (!pointCardTooltip || !pointCardTooltipTrigger) return;
+
+  pointCardTooltip.hidden = true;
+  pointCardTooltipTrigger.setAttribute("aria-expanded", "false");
+}
+
+if (pointCardTooltipTrigger && pointCardTooltip) {
+  pointCardTooltipTrigger.addEventListener("click", function (event) {
+    event.stopPropagation();
+
+    const isOpen = !pointCardTooltip.hidden;
+
+    if (isOpen) {
+      closePointCardTooltip();
+    } else {
+      pointCardTooltip.hidden = false;
+      pointCardTooltipTrigger.setAttribute("aria-expanded", "true");
+    }
+  });
+
+  pointCardTooltip.addEventListener("click", function (event) {
+    event.stopPropagation();
+  });
+}
+
+document.querySelectorAll("[data-point-card-tooltip-close]").forEach(function (btn) {
+  btn.addEventListener("click", closePointCardTooltip);
+});
+
+document.addEventListener("click", closePointCardTooltip);
+
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape") {
+    closePointCardTooltip();
+  }
+});
+
 
     // 다크모드 테스트
 

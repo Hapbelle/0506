@@ -47,17 +47,41 @@
     <section class="point-wallet" aria-label="보유 포인트 선택">
       <div class="point-wallet__summary">
         <div class="point-wallet__label-row">
-          <p class="point-wallet__label">보유중인 포인트 합계</p>
-          <button type="button" class="point-wallet__help" aria-label="보유중인 포인트 합계 안내" aria-expanded="false">
+        <p class="point-wallet__label">보유중인 포인트 합계</p>
+
+        <div class="point-wallet__tooltip-wrap">
+            <button type="button" class="point-wallet__help" aria-label="보유중인 포인트 합계 안내" aria-expanded="false" aria-controls="pointWalletTooltip" data-point-wallet-tooltip-trigger>
             <img class="point-wallet__help-icon" src="imgs/circle-help.svg" alt="" />
-          </button>
+            </button>
+
+            <div class="point-wallet-tooltip" id="pointWalletTooltip" role="dialog" aria-label="보유중인 포인트 합계 안내" hidden>
+            <span class="point-wallet-tooltip__arrow" aria-hidden="true"></span>
+
+            <div class="point-wallet-tooltip__panel">
+                <div class="point-wallet-tooltip__head">
+                <p class="point-wallet-tooltip__title">보유 중인 포인트 합계 안내</p>
+                <button type="button" class="point-wallet-tooltip__close" aria-label="툴팁 닫기" data-point-wallet-tooltip-close>
+                    <img class="point-wallet-tooltip__close-icon" src="imgs/xicon-w.svg" alt="" />
+                </button>
+                </div>
+
+                <div class="point-wallet-tooltip__texts">
+                <p class="point-wallet-tooltip__text">· 적립 받은 쇼플포인트와 쿠플포인트의 총합입니다.</p>
+                <p class="point-wallet-tooltip__text">· 쇼플포인트란 쿠팡을 제외한 모든 쇼핑몰에서 쇼핑 후 받으신 리워드입니다.</p>
+                <p class="point-wallet-tooltip__text">· 쿠플포인트란 쿠팡에서 쇼핑 후 받으신 리워드입니다.</p>
+                <p class="point-wallet-tooltip__text">· 상세한 내용은 적립내역에서 확인할 수 있습니다.</p>
+                <p class="point-wallet-tooltip__text">· 쇼핑몰 정책 변경 혹은 기타 사유로 실제 적립 내역이 다를 수 있습니다.</p>
+                </div>
+            </div>
+            </div>
+        </div>
         </div>
 
         <div class="point-wallet__total">
-          <div class="point-wallet__coins" aria-hidden="true">
+          <!-- <div class="point-wallet__coins" aria-hidden="true">
             <span class="point-icon point-icon--summary point-icon--sp">SP</span>
             <span class="point-icon point-icon--summary point-icon--cp">CP</span>
-          </div>
+          </div> -->
           <p class="point-wallet__total-value">48,276</p>
         </div>
       </div>
@@ -386,7 +410,7 @@
 <section class="footer-notice" aria-label="이용 안내">
 <h2 class="footer-notice__title">알려드려요</h2>
 <p class="footer-notice__list">
-· 적립 내역은 최대 1년간 보관됩니다. <br/>
+· 적립된 포인트의 유효기간은 적립일로부터 1년이며, 적립 및 사용 내역 또한 1년간 안전하게 보관됩니다. <br/>
 · 적립 내역은 최대 3개월 보관됩니다.<br/>
 · 내역의 날짜는 구매 또는 주문일 기준입니다.<br/>
 · 구매 이후 이용 내역에 반영까지 다소 시간이 소요 될 수 있습니다.<br/>
@@ -712,7 +736,47 @@ setView("earn");
   setTimeout(setup, 200);
 })();
 
+// 보유 포인트 합계 툴팁
+const pointWalletTooltipTrigger = document.querySelector("[data-point-wallet-tooltip-trigger]");
+const pointWalletTooltip = document.getElementById("pointWalletTooltip");
 
+function closePointWalletTooltip() {
+  if (!pointWalletTooltip || !pointWalletTooltipTrigger) return;
+
+  pointWalletTooltip.hidden = true;
+  pointWalletTooltipTrigger.setAttribute("aria-expanded", "false");
+}
+
+if (pointWalletTooltipTrigger && pointWalletTooltip) {
+  pointWalletTooltipTrigger.addEventListener("click", function (event) {
+    event.stopPropagation();
+
+    const isOpen = !pointWalletTooltip.hidden;
+
+    if (isOpen) {
+      closePointWalletTooltip();
+    } else {
+      pointWalletTooltip.hidden = false;
+      pointWalletTooltipTrigger.setAttribute("aria-expanded", "true");
+    }
+  });
+
+  pointWalletTooltip.addEventListener("click", function (event) {
+    event.stopPropagation();
+  });
+}
+
+document.querySelectorAll("[data-point-wallet-tooltip-close]").forEach(function (btn) {
+  btn.addEventListener("click", closePointWalletTooltip);
+});
+
+document.addEventListener("click", closePointWalletTooltip);
+
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape") {
+    closePointWalletTooltip();
+  }
+});
 
   // 다크모드 테스트
 
